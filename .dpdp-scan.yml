@@ -1,0 +1,12 @@
+# dpdp-scan configuration for DVDPA. Everything is switched on so every planted
+# issue shows. A real project would add its own mailbox domains under
+# allow.domains and point ignore.paths at test fixtures.
+version: 1
+ignore:
+  paths: []
+detectors:
+  disable: []
+allow:
+  domains: []
+  values_sha256: []
+fail_on: none

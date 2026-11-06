@@ -1,0 +1,38 @@
+// ISSUE 5 again (schema_prisma): the same personal-data fields declared in Prisma.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Customer {
+  id         Int      @id @default(autoincrement())
+  fullName   String
+  aadhaarNo  String?
+  panNo      String?
+  mobile     String?
+  email      String?
+  upiId      String?
+  dob        DateTime?
+  createdAt  DateTime @default(now())
+  documents  KycDocument[]
+}
+
+model KycDocument {
+  id          Int      @id @default(autoincrement())
+  customer    Customer @relation(fields: [customerId], references: [id])
+  customerId  Int
+  passportNo  String?
+  voterId     String?
+  dlNo        String?
+  selfiePath  String?
+}
+
+model Plan {
+  id         Int    @id @default(autoincrement())
+  name       String
+  pricePaise Int
+}

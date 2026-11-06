@@ -1,0 +1,22 @@
+# Scan this repository with dpdp-scan on every push and send the SARIF to the
+# Security tab. fail-on is "none" because the findings are the point.
+name: dpdp-scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: statecheck-security/dpdp-scan@main
+        with:
+          fail-on: none

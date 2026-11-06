@@ -1,0 +1,46 @@
+# ISSUE 5 again (schema_openapi): the API contract declares the same fields.
+openapi: 3.0.3
+info:
+  title: DVDPA KYC API
+  version: 0.1.0
+  description: A deliberately leaky demo. Every value in examples is synthetic.
+paths:
+  /signup:
+    post:
+      summary: Create a customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Signup"
+      responses:
+        "200":
+          description: ok
+  /customers/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: ok
+components:
+  schemas:
+    Signup:
+      type: object
+      required: [full_name, email, dob]
+      properties:
+        full_name: { type: string }
+        aadhaar_no: { type: string, pattern: "^[2-9][0-9]{11}$" }
+        pan_no: { type: string }
+        mobile: { type: string }
+        email: { type: string, format: email }
+        upi_id: { type: string }
+        dob: { type: string, format: date }
+        address:
+          type: object
+          properties:
+            line1: { type: string }
+            pincode: { type: string }
