@@ -19,7 +19,7 @@ Email addresses use a domain that is not registered. Nothing belongs to a person
 
 ```bash
 pipx install dpdp-scan semgrep      # or: pip install dpdp-scan semgrep
-# until the PyPI release lands: pip install git+https://github.com/statecheck-security/dpdp-scan@v0.1.0 semgrep
+# until the PyPI release lands: pip install git+https://github.com/statecheck-security/dpdp-scan@v0.1.1 semgrep
 git clone https://github.com/statecheck-security/dvdpa && cd dvdpa
 dpdp-scan .
 ```
